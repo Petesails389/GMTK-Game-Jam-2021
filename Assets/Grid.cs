@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grid
+public class Grid 
 {
     Vector2Int gridSize;
     List<Node> nodes = new List<Node>();
