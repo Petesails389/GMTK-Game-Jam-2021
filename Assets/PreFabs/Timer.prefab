@@ -211,5 +211,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 783a66942fb27fe08be5f821616a5bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 100
+  time: 10
   timerForeground: {fileID: 369881617746329718}
+  timing: 1
