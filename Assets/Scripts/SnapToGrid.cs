@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class SnapToGrid : MonoBehaviour
 {
     public UnityEvent<GameObject> OnPlaceEvent;
-    bool placed = false;
+    bool placed = true;
     Vector2Int currentPosition;
     void Update()
     {
@@ -19,12 +19,24 @@ public class SnapToGrid : MonoBehaviour
                 OnPlaceEvent.Invoke(gameObject);
             }
         }
+        if(placed){
+            if (Input.GetMouseButtonDown(0)) {
+                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+
+                RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+                Debug.Log(hit.transform);
+                if(hit.collider == gameObject.GetComponent<BoxCollider2D>()){
+                    placed = false;
+                }
+            }
+        }
     }
 
     void FollowMouse()
     {
         Vector3 mousePos = Input.mousePosition;
-        //
+
         mousePos.z = Camera.main.nearClipPlane;
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePos);
         worldPosition.x = Mathf.Clamp(worldPosition.x, 0, GridHandler.GridSize.x - 1);
