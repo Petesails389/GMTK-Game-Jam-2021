@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Love
   - NodeEvent
+  - Obstical
   layers:
   - Default
   - TransparentFX
