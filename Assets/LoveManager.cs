@@ -6,9 +6,12 @@ public class LoveManager : ScriptableObject
 {
     public static void CheckLove(GameObject other)
     {
-        if (other.CompareTag("Love"))
-        {
-            Debug.Log("YUS THEY LOVE EACH OTHER<3");
-        }
+        Debug.Log($"Love: {other.name}");
+    }//
+
+    public static void CheckEvent(GameObject other)
+    {
+        
+        Debug.Log($"Event: {other.name}");
     }
 }
