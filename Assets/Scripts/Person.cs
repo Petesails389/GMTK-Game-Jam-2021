@@ -9,15 +9,18 @@ public class Person : MonoBehaviour
     [SerializeField] PersonState state;
     [SerializeField] List<PersonFeature> personFeatures = new List<PersonFeature>();
 
-
+    [SerializeField] PersonManager personManager;
     void Start()
     {
         SetState(state);
+        personManager.AddPerson(this);
+
 
     }
 
     public void SetState(PersonState _action)
     {
+        
         GetComponent<SpriteRenderer>().sprite = spriteChanger.GetSprite(_action);
         state = _action;
         state.Trigger(this);

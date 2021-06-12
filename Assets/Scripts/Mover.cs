@@ -5,9 +5,9 @@ using UnityEngine;
 public class Mover : MonoBehaviour
 {
     [SerializeField] Vector2Int startPosition;
-
+    [SerializeField] float speed = 0.5f;
     Vector2Int lastPosition;
-    public Vector2Int nextPos;
+    Vector2Int nextPos;
 
     void Start()
     {
@@ -22,6 +22,11 @@ public class Mover : MonoBehaviour
     }
 
     void Update()
+    {
+        SetLineRenderer();
+    }
+
+    void SetLineRenderer()
     {
         LineRenderer lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.positionCount = 2;
@@ -38,13 +43,12 @@ public class Mover : MonoBehaviour
     {
         Vector2Int _currentPos = startPosition;
 
-
-        for (int i = 0; i < 50; i++)
+        while (true)
         {
-
             Node _node = GridHandler.grid.GetNode(_currentPos.x, _currentPos.y);
 
             nextPos = lastPosition;
+
             while (lastPosition == nextPos)
             {
                 int _randomInt = Random.Range(0, _node.neighbours.Count);
@@ -53,9 +57,8 @@ public class Mover : MonoBehaviour
 
             lastPosition = _currentPos;
             _currentPos = nextPos;
-            LeanTween.move(gameObject, ((Vector3Int)nextPos), 0.5f);
-            // transform.position = ((Vector3Int)_pos);
-            yield return new WaitForSeconds(0.5f);
+            LeanTween.move(gameObject, ((Vector3Int)nextPos), speed);
+            yield return new WaitForSeconds(speed);
         }
 
     }
