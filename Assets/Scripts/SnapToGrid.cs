@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class SnapToGrid : MonoBehaviour
 {
     public UnityEvent<GameObject> OnPlaceEvent;
+    public UnityEvent<GameObject> OnPickupEvent;
     bool placed = true;
     Vector2Int currentPosition;
     void Update()
@@ -28,6 +29,7 @@ public class SnapToGrid : MonoBehaviour
                 Debug.Log(hit.transform);
                 if(hit.collider == gameObject.GetComponent<BoxCollider2D>()){
                     placed = false;
+                    OnPickupEvent.Invoke(gameObject);
                 }
             }
         }
