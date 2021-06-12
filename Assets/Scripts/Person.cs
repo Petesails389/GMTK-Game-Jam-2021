@@ -6,6 +6,7 @@ public class Person : MonoBehaviour
 {
     [SerializeField] StateSpriteChanger spriteChanger;
     [SerializeField] Mover mover;
+    [SerializeField] GameObject hearts;
     [SerializeField] PersonState state;
     [SerializeField] List<PersonFeature> personFeatures = new List<PersonFeature>();
 
@@ -58,6 +59,8 @@ public class Person : MonoBehaviour
                 LoveConditionFeature _con = _feat as LoveConditionFeature;
                 if (_con.CheckCondition(_otherState))
                 {
+                    StopMoving();
+                    hearts.SetActive(true);
                     Debug.Log("FALL IN LOVE");
                 }
             }
