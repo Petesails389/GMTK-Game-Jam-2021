@@ -17,6 +17,12 @@ public class TooltipShower3D : MonoBehaviour
         Debug.Log($"Mouse Enters: {gameObject.name}");
     }
 
+    public void OnMouseOver()
+    {
+        system.Update();
+        Debug.Log($"Mouse Moves: {gameObject.name}");
+    }
+
     public void OnMouseExit()
     {
         system.Hide();

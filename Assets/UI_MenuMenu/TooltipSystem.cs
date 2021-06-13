@@ -22,4 +22,8 @@ public class TooltipSystem : ScriptableObject
         Tooltip.instance.gameObject.SetActive(false);
     }
 
+    public void Update()
+    {
+        Tooltip.instance.transform.position = Input.mousePosition;
+    }
 }

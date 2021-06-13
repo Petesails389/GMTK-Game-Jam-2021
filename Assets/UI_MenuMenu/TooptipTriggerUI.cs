@@ -14,6 +14,11 @@ public class TooptipTriggerUI : MonoBehaviour, IPointerEnterHandler, IPointerExi
         tooltipSystem.Show(header, content);
     }
 
+    void Update()
+    {
+        tooltipSystem.Update();
+    }
+
     public void OnPointerExit(PointerEventData eventData)
     {
         tooltipSystem.Hide();
