@@ -5,6 +5,7 @@ using UnityEngine;
 public class NodeLink
 {
     bool isBlocked = false;
+    
     public bool IsBlocked => isBlocked;
     public Vector2 location;
     public Node node1;

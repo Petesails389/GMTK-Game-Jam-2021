@@ -46,6 +46,15 @@ public class NodeGrid
         return linkDict[_loc];
     }
 
+    public NodeLink GetLink(Vector2Int _node1Loc, Vector2Int _node2Loc)
+    {
+
+        Node _node1 = GridHandler.grid.GetNode(_node1Loc);
+        Node _node2 = GridHandler.grid.GetNode(_node2Loc);
+        Vector2 _dir = _node1.gridLocation - _node2.gridLocation;
+        Vector2 _loc = _node1.gridLocation - _dir * 0.5f;
+        return linkDict[_loc];
+    }
     public void CalculateNeighbours()
     {
         for (int x = 0; x < gridSize.x; x++)

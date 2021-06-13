@@ -48,12 +48,17 @@ public class Mover : MonoBehaviour, IGridMover
         while (!stopMovingWhenDone)
         {
             Node _node = GridHandler.grid.GetNode(currentNodePosition.x, currentNodePosition.y);
-
+            bool isBlocked = false;
             do
             {
                 int _randomInt = Random.Range(0, _node.neighbours.Count);
                 nextNodePosition = _node.neighbours[_randomInt].gridLocation;
-            } while (lastNodePosition == nextNodePosition && !canMoveBack);
+
+                if (GridHandler.grid.GetLink(lastNodePosition, nextNodePosition).IsBlocked)
+                {
+                    isBlocked = true;
+                }
+            } while (lastNodePosition == nextNodePosition && !isBlocked);
 
             lastNodePosition = currentNodePosition;
             currentNodePosition = nextNodePosition;
