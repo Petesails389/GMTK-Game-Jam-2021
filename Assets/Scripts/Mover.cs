@@ -2,64 +2,81 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mover : MonoBehaviour
+public class Mover : MonoBehaviour, IGridMover
 {
-    [SerializeField] Vector2Int startPosition;
-    [SerializeField] float speed = 0.5f;
-    Vector2Int lastPosition;
-    Vector2Int nextPos;
 
-    void Start()
+    [SerializeField] Vector2Int startNodePosition;
+    [SerializeField] float timeBetweenNodes = 0.5f;
+    [SerializeField] bool canMoveBack;
+    public bool stopMovingWhenDone = false;
+    Vector2Int lastNodePosition;
+    Vector2Int currentNodePosition;
+    Vector2 currentWorldPosition;
+    Vector2Int nextNodePosition;
+
+    //Interface impl.
+    public void StartMoving()
     {
-        transform.position = ((Vector3Int)startPosition);
         StartCoroutine("MoveBetweenNodes");
     }
 
-    public void Stop()
+    public void StopMoving()
     {
         LeanTween.cancel(gameObject);
         StopAllCoroutines();
     }
+    //Callbacks
+    void Start()
+    {
+        currentNodePosition = startNodePosition;
+        transform.position = GridHandler.grid.GetNode(currentNodePosition).worldPosition;
+        StartMoving();
+    }
 
     void Update()
     {
-        SetLineRenderer();
-    }
 
-    void SetLineRenderer()
-    {
-        LineRenderer lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.positionCount = 2;
-        lineRenderer.SetPosition(0, new Vector3(transform.position.x, transform.position.y, -8));
-        lineRenderer.SetPosition(1, new Vector3(nextPos.x, nextPos.y, -8));
     }
-
     void OnDestroy()
     {
         StopAllCoroutines();
     }
 
+
     IEnumerator MoveBetweenNodes()
     {
-        Vector2Int _currentPos = startPosition;
-
-        while (true)
+        while (!stopMovingWhenDone)
         {
-            Node _node = GridHandler.grid.GetNode(_currentPos.x, _currentPos.y);
+            Node _node = GridHandler.grid.GetNode(currentNodePosition.x, currentNodePosition.y);
 
-            nextPos = lastPosition;
-
-            while (lastPosition == nextPos)
+            do
             {
                 int _randomInt = Random.Range(0, _node.neighbours.Count);
-                nextPos = _node.neighbours[_randomInt].gridLocation;
-            }
+                nextNodePosition = _node.neighbours[_randomInt].gridLocation;
+            } while (lastNodePosition == nextNodePosition && !canMoveBack);
 
-            lastPosition = _currentPos;
-            _currentPos = nextPos;
-            LeanTween.move(gameObject, ((Vector3Int)nextPos), speed);
-            yield return new WaitForSeconds(speed);
+            lastNodePosition = currentNodePosition;
+            currentNodePosition = nextNodePosition;
+
+
+            yield return new WaitForSeconds(timeBetweenNodes);
+
+            MoveToNextNodePosition();
+
         }
 
     }
+
+    public void SetSpeed(float _timeBetweenNodes)
+    {
+        timeBetweenNodes = _timeBetweenNodes;
+    }
+
+    public void MoveToNextNodePosition()
+    {
+        LeanTween.move(gameObject, GridHandler.grid.GetNode(nextNodePosition).worldPosition, timeBetweenNodes);
+
+    }
+
+
 }

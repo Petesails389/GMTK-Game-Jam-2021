@@ -7,6 +7,7 @@ public class SnapToGrid : MonoBehaviour
 {
     public UnityEvent<GameObject> OnPlaceEvent;
     bool placed = false;
+
     Vector2Int currentPosition;
     void Update()
     {
@@ -15,26 +16,38 @@ public class SnapToGrid : MonoBehaviour
             FollowMouse();
             if (Input.GetMouseButtonDown(0))
             {
-                placed = true;
-                OnPlaceEvent.Invoke(gameObject);
+                // placed = true;
+                // OnPlaceEvent.Invoke(gameObject);
             }
         }
     }
 
-    void OnMouseOver()
-    {
-        Debug.Log("Test!");
-    }
 
     void FollowMouse()
     {
-        Vector3 mousePos = Input.mousePosition;
-        
-        mousePos.z = 0;
-        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePos);
-        worldPosition.x = Mathf.Clamp(worldPosition.x, 0, GridHandler.GridSize.x - 1);
-        worldPosition.y = Mathf.Clamp(worldPosition.y, 0, GridHandler.GridSize.y - 1);
-        currentPosition = new Vector2Int(Mathf.RoundToInt(worldPosition.x), Mathf.RoundToInt(worldPosition.y));
-        transform.position = new Vector3(currentPosition.x, currentPosition.y, 0);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            Vector3 _worldPosition = hit.point;
+            _worldPosition.x = Mathf.Round(_worldPosition.x);
+            _worldPosition.z = Mathf.Round(_worldPosition.z);
+            int _clampX = Mathf.Clamp((int)_worldPosition.x,0,(GridHandler.GridSize.x - 1));
+            int _clampY = Mathf.Clamp((int)_worldPosition.z,0,(GridHandler.GridSize.y - 1));
+            transform.position =GridHandler.grid.GetNode(_clampX,_clampY).worldPosition;
+            // float _x = _worldPosition.x - (_worldPosition.x % (0.5f * GridHandler.GridScale.x));
+            // float _y = _worldPosition.y - (_worldPosition.y % (0.5f * GridHandler.GridScale.y));
+            // Vector2 _gridPosition = new Vector2(_x, _y);
+            // transform.position = new Vector3(_gridPosition.x, 0, _gridPosition.y);
+
+        }
+
+        // worldPosition.x -= (worldPosition.x % 0.5f);
+        // worldPosition.z -= (worldPosition.z % 0.5f);
+        // worldPosition.x = Mathf.Clamp(worldPosition.x, 0, (GridHandler.GridSize.x - 1) * GridHandler.GridScale.x);
+        // worldPosition.z = Mathf.Clamp(worldPosition.y, 0, (GridHandler.GridSize.y - 1) * GridHandler.GridScale.y);
+        // print(worldPosition);
+        // // currentPosition = new Vector2Int(Mathf.RoundToInt(worldPosition.x), Mathf.RoundToInt(worldPosition.z));
     }
 }
