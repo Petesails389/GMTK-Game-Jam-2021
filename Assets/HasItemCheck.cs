@@ -10,4 +10,9 @@ public class HasItemCheck : ConditionCheck
     {
         return (_details.item == itemToCheck);
     }
+
+    public override bool CheckWorldObject(WorldObject _object)
+    {
+        return _object.item == itemToCheck;
+    }
 }

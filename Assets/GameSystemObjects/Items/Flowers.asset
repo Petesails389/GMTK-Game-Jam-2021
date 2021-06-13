@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc94c309da0f91d41a039df81dbc9e65, type: 3}
   m_Name: Flowers
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: fc5d058970f91fc4f8414186d7514730, type: 3}
+  header: Flower
+  content: Pretty

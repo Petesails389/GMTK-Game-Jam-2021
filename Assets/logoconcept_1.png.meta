@@ -1,7 +1,34 @@
 fileFormatVersion: 2
 guid: cca822178fb88bf43b3c2c8063aa62b1
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -4684006983010704481
+    second: logoconcept_1_0
+  - first:
+      213: -1853119643563127419
+    second: logoconcept_1_1
+  - first:
+      213: 1597459189044202835
+    second: logoconcept_1_2
+  - first:
+      213: 81413175520867383
+    second: logoconcept_1_3
+  - first:
+      213: -6082662817993704704
+    second: logoconcept_1_4
+  - first:
+      213: 8827929042729184048
+    second: logoconcept_1_5
+  - first:
+      213: 3965500926734746901
+    second: logoconcept_1_6
+  - first:
+      213: 6259750083269889871
+    second: logoconcept_1_7
+  - first:
+      213: -8048610012881398868
+    second: logoconcept_1_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -41,7 +68,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -75,9 +102,222 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: logoconcept_1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1823
+        width: 453
+        height: 454
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f93a23447701ffeb0800000000000000
+      internalID: -4684006983010704481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logoconcept_1_1
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 1823
+        width: 62
+        height: 454
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58d0f1f90856846e0800000000000000
+      internalID: -1853119643563127419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logoconcept_1_2
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 1823
+        width: 454
+        height: 454
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35dc9223ba05b2610800000000000000
+      internalID: 1597459189044202835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logoconcept_1_3
+      rect:
+        serializedVersion: 2
+        x: 1119
+        y: 1819
+        width: 454
+        height: 458
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73435fe0adc312100800000000000000
+      internalID: 81413175520867383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logoconcept_1_4
+      rect:
+        serializedVersion: 2
+        x: 1625
+        y: 1819
+        width: 454
+        height: 458
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00b3205f46a069ba0800000000000000
+      internalID: -6082662817993704704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logoconcept_1_5
+      rect:
+        serializedVersion: 2
+        x: 2131
+        y: 1823
+        width: 454
+        height: 454
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03b2a3621ba138a70800000000000000
+      internalID: 8827929042729184048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logoconcept_1_6
+      rect:
+        serializedVersion: 2
+        x: 3141
+        y: 1823
+        width: 454
+        height: 454
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 515c18e251a480730800000000000000
+      internalID: 3965500926734746901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logoconcept_1_7
+      rect:
+        serializedVersion: 2
+        x: 3645
+        y: 1823
+        width: 451
+        height: 454
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4f060009891fd650800000000000000
+      internalID: 6259750083269889871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logoconcept_1_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1685
+        width: 4096
+        height: 1413
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca35d8e26d79d4090800000000000000
+      internalID: -8048610012881398868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

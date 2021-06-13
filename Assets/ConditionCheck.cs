@@ -6,5 +6,6 @@ public abstract class ConditionCheck : ScriptableObject
 {
     
     public abstract bool Check(LoverDetails _details);
+    public abstract bool CheckWorldObject(WorldObject _object);
 
 }

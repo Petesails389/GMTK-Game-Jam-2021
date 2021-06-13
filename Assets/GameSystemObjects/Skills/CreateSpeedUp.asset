@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 758d3cc2abe24e74f890516b07800053, type: 3}
+  m_Name: CreateSpeedUp
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 40e9773e0762783449305de07c11c13b, type: 3}
+  worldObject: {fileID: 7109419927890763847, guid: f1eaa8aced0c13c4f902bb4a4ae55f3b, type: 3}

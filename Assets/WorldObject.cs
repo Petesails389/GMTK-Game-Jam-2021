@@ -5,8 +5,10 @@ using UnityEngine;
 public class WorldObject : MonoBehaviour
 {
     public Vector2Int currentPosition;
-    
-    public void DestroyWorldObject(){
+
+    public Item item;
+    public void DestroyWorldObject()
+    {
         Destroy(gameObject);
     }
 

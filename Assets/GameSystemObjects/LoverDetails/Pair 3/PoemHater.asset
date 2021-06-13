@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 209edae24bc841548ae7e95e1c1adea4, type: 3}
+  m_Name: PoemHater
+  m_EditorClassIdentifier: 
+  loverName: Poe
+  prefab: {fileID: 85218014960627973, guid: 6b763e4af4cbd4a49be4e944694d7905, type: 3}
+  loveBar: {fileID: 11400000, guid: f292785e38a952c44a44bd8c373e0fb1, type: 2}
+  soulMateDetails: {fileID: 11400000, guid: 695eb4d18a7ecc0479226090a7e43433, type: 2}
+  soulMate: {fileID: 0}
+  Happyness: 10
+  item: {fileID: 0}
+  movementSpeed: 4.32
+  loveInterest: {fileID: 11400000, guid: e370b7350574bdf4eaa1396310830610, type: 2}

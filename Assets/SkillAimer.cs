@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SkillAimer : MonoBehaviour
 {
+    public Sprite icon;
     public Skill skill;
     public void Trigger(Vector2Int _loc)
     {

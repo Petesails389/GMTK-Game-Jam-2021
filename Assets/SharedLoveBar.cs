@@ -4,6 +4,17 @@ using UnityEngine;
 [CreateAssetMenu]
 public class SharedLoveBar : ScriptableObject
 {
-    public float currentValue;
-    public List<Lover> lovers = new List<Lover>();
+    public int currentValue;
+
+    public void SetValue(int newValue)
+    {
+        currentValue = newValue;
+        UpdateHeartBar();
+    }
+
+    public void UpdateHeartBar()
+    {
+        PersonDetailUI.UpdateHeartBar(currentValue);
+    }
+
 }

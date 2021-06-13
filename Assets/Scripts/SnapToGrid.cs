@@ -18,6 +18,7 @@ public class SnapToGrid : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && mouseOnMap)
             {
                 placed = true;
+                
                 OnPlaceEvent.Invoke(currentPosition);
             }
         }

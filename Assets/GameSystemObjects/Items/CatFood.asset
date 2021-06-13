@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc94c309da0f91d41a039df81dbc9e65, type: 3}
   m_Name: CatFood
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  header: a
+  content: a

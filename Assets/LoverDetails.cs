@@ -5,6 +5,13 @@ using UnityEngine;
 [CreateAssetMenu]
 public class LoverDetails : ScriptableObject
 {
+    public string loverName;
+    public Lover prefab;
+    public SharedLoveBar loveBar;
+
+    public LoverDetails soulMateDetails;
+    public Lover soulMate;
+
     [Header("(Local) Stats and state")]
     public float Happyness;
     public Item item;
@@ -14,4 +21,21 @@ public class LoverDetails : ScriptableObject
 
     [Header("Traits")]
     public LoveInterest loveInterest;
+
+    public void Init(int x, int y, Lover _lover)
+    {
+        loveBar.SetValue(5);
+        Mover mov = _lover.GetComponent<Mover>();
+
+
+        mov.startNodePosition = new Vector2Int(x, y);
+
+        _lover.details = this;
+        _lover.loveBar = loveBar;
+        _lover.other = soulMate;
+        _lover.Init();
+    }
+
+    
+
 }

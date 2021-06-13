@@ -5,7 +5,7 @@ using UnityEngine;
 public class Mover : MonoBehaviour, IGridMover
 {
 
-    [SerializeField] Vector2Int startNodePosition;
+    public Vector2Int startNodePosition;
     [SerializeField] float timeBetweenNodes = 0.5f;
     [SerializeField] bool canMoveBack;
     public bool stopMovingWhenDone = false;
@@ -14,6 +14,8 @@ public class Mover : MonoBehaviour, IGridMover
     Vector2 currentWorldPosition;
     Vector2Int nextNodeLocation;
     Vector2Int[] directions = { Vector2Int.left, Vector2Int.down, Vector2Int.right, Vector2Int.up };
+
+
 
     //Interface impl.
     public void StartMoving()
@@ -26,23 +28,23 @@ public class Mover : MonoBehaviour, IGridMover
         LeanTween.cancel(gameObject);
         StopAllCoroutines();
     }
-    //Callbacks
-    void Start()
+
+    public void Init()
     {
         currentNodeLocation = startNodePosition;
         transform.position = GridHandler.grid.GetNode(currentNodeLocation).worldPosition;
         StartMoving();
-    }
-
-    void Update()
-    {
-
     }
     void OnDestroy()
     {
         StopAllCoroutines();
     }
 
+
+    public float GetSpeed()
+    {
+        return timeBetweenNodes;
+    }
 
     IEnumerator MoveBetweenNodes()
     {
@@ -73,9 +75,10 @@ public class Mover : MonoBehaviour, IGridMover
             } while (findNewLocation);
 
             nextNodeLocation = _nextNodeLocation;
-            yield return new WaitForSeconds(timeBetweenNodes);
+
 
             MoveToNextNodePosition();
+            yield return new WaitForSeconds(timeBetweenNodes);
             lastNodeLocation = currentNodeLocation;
             currentNodeLocation = nextNodeLocation;
         }

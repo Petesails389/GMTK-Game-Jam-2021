@@ -8,6 +8,7 @@ public class LoveInterest : ScriptableObject
     {
         Love, Hate
     }
+    public Sprite icon;
     public EFeeling feeling;
     public ConditionCheck conditionCheck;
 

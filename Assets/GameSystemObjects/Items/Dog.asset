@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc94c309da0f91d41a039df81dbc9e65, type: 3}
   m_Name: Dog
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 487000b1009f79d4d9732cbe3ea878a9, type: 3}
+  header: Dog
+  content: It's cute

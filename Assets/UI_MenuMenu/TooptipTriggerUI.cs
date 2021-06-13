@@ -6,8 +6,8 @@ using UnityEngine.EventSystems;
 public class TooptipTriggerUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] TooltipSystem tooltipSystem;
-    [SerializeField] string header;
-    [SerializeField] [TextArea] string content;
+    [SerializeField] public string header;
+    [SerializeField] [TextArea] public string content;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
