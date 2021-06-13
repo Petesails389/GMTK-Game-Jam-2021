@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Skill : MonoBehaviour
+[CreateAssetMenu]
+public class Skill : ScriptableObject
 {
-    [SerializeField] GameObject worldObject;
-    Vector2Int currentGridLocation;
-    public virtual void Trigger(Vector2Int location)
+    [SerializeField] WorldObject worldObject;
+
+    public virtual void Trigger(Vector2Int _loc)
     {
-        currentGridLocation = location;
-        Instantiate(worldObject, GridHandler.grid.GetNode(location).worldPosition,Quaternion.identity);
+        WorldObject _newWorldObject = Instantiate(worldObject, GridHandler.grid.GetNode(_loc).worldPosition, Quaternion.identity);
+        _newWorldObject.GetComponent<StraightMover>().StartMoving(_loc);
+        _newWorldObject.currentPosition = _loc;
     }
 }

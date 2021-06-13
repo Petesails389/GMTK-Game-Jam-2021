@@ -1,19 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &1084678829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8247541478206291729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 789c1b62715766d46a11b03216c76e21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particle: {fileID: 4474537410816317137}
-  turnOffAfterSeconds: 5
 --- !u!1 &5127390893546947400
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,7 +51,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 608a5750c15b93b4b865e4e65db7c2f1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -232,7 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ba8a24def5856408aaec1694910987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startNodePosition: {x: 0, y: 0}
+  startNodePosition: {x: 1, y: 1}
   timeBetweenNodes: 0.5
   canMoveBack: 0
   stopMovingWhenDone: 0
@@ -377,6 +363,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1084678829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8247541478206291729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 789c1b62715766d46a11b03216c76e21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 4474537410816317137}
+  turnOffAfterSeconds: 5
 --- !u!1001 &356029135
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -418,7 +418,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6927959564882523178, guid: 63a8c7fa0ead5f949bb1149de44e222c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1
+      value: -3.28
       objectReference: {fileID: 0}
     - target: {fileID: 6927959564882523178, guid: 63a8c7fa0ead5f949bb1149de44e222c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -492,7 +492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7693230218979026110, guid: e374ff9baafa42e4f9cf713170ecd2f9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -3.28
       objectReference: {fileID: 0}
     - target: {fileID: 7693230218979026110, guid: e374ff9baafa42e4f9cf713170ecd2f9, type: 3}
       propertyPath: m_LocalRotation.w

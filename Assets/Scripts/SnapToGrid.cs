@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class SnapToGrid : MonoBehaviour
 {
 
-    public UnityEvent<GameObject> OnPlaceEvent;
+    public UnityEvent<Vector2Int> OnPlaceEvent;
     bool placed = false;
     bool mouseOnMap = false;
     Vector2Int currentPosition;
@@ -18,7 +18,7 @@ public class SnapToGrid : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && mouseOnMap)
             {
                 placed = true;
-                OnPlaceEvent.Invoke(gameObject);
+                OnPlaceEvent.Invoke(currentPosition);
             }
         }
     }
@@ -43,6 +43,7 @@ public class SnapToGrid : MonoBehaviour
             _worldPosition.y = Mathf.Round(_worldPosition.y);
             int _clampX = Mathf.Clamp((int)_worldPosition.x, 0, (GridHandler.GridSize.x - 1));
             int _clampY = Mathf.Clamp((int)_worldPosition.y, 0, (GridHandler.GridSize.y - 1));
+            currentPosition = new Vector2Int(_clampX, _clampY);
             transform.position = GridHandler.grid.GetNode(_clampX, _clampY).worldPosition;
             // float _x = _worldPosition.x - (_worldPosition.x % (0.5f * GridHandler.GridScale.x));
             // float _y = _worldPosition.y - (_worldPosition.y % (0.5f * GridHandler.GridScale.y));

@@ -9,10 +9,11 @@ public class Mover : MonoBehaviour, IGridMover
     [SerializeField] float timeBetweenNodes = 0.5f;
     [SerializeField] bool canMoveBack;
     public bool stopMovingWhenDone = false;
-    Vector2Int lastNodePosition;
-    Vector2Int currentNodePosition;
+    Vector2Int lastNodeLocation;
+    Vector2Int currentNodeLocation;
     Vector2 currentWorldPosition;
-    Vector2Int nextNodePosition;
+    Vector2Int nextNodeLocation;
+    Vector2Int[] directions = { Vector2Int.left, Vector2Int.down, Vector2Int.right, Vector2Int.up };
 
     //Interface impl.
     public void StartMoving()
@@ -28,8 +29,8 @@ public class Mover : MonoBehaviour, IGridMover
     //Callbacks
     void Start()
     {
-        currentNodePosition = startNodePosition;
-        transform.position = GridHandler.grid.GetNode(currentNodePosition).worldPosition;
+        currentNodeLocation = startNodePosition;
+        transform.position = GridHandler.grid.GetNode(currentNodeLocation).worldPosition;
         StartMoving();
     }
 
@@ -47,27 +48,36 @@ public class Mover : MonoBehaviour, IGridMover
     {
         while (!stopMovingWhenDone)
         {
-            Node _node = GridHandler.grid.GetNode(currentNodePosition.x, currentNodePosition.y);
-            bool isBlocked = false;
+            bool findNewLocation = false;
+            Node _currentNode = GridHandler.grid.GetNode(currentNodeLocation.x, currentNodeLocation.y);
+
+            Vector2Int _nextNodeLocation;
             do
             {
-                int _randomInt = Random.Range(0, _node.neighbours.Count);
-                nextNodePosition = _node.neighbours[_randomInt].gridLocation;
+                int _randomInt = Random.Range(0, _currentNode.neighbours.Count);
+                _nextNodeLocation = _currentNode.neighbours[_randomInt].gridLocation;
 
-                if (GridHandler.grid.GetLink(lastNodePosition, nextNodePosition).IsBlocked)
+                //Check if link to next node is not blocked
+                // if (GridHandler.grid.GetLink(lastNodeLocation, _nextNodeLocation).IsBlocked)
+                // {
+
+                //     findNewLocation = true;
+                // }
+
+                //Check if can move back and next node is not back
+                if (!canMoveBack && lastNodeLocation == nextNodeLocation)
                 {
-                    isBlocked = true;
+                    // findNewLocation = true;
                 }
-            } while (lastNodePosition == nextNodePosition && !isBlocked);
 
-            lastNodePosition = currentNodePosition;
-            currentNodePosition = nextNodePosition;
+            } while (findNewLocation);
 
-
+            nextNodeLocation = _nextNodeLocation;
             yield return new WaitForSeconds(timeBetweenNodes);
 
             MoveToNextNodePosition();
-
+            lastNodeLocation = currentNodeLocation;
+            currentNodeLocation = nextNodeLocation;
         }
 
     }
@@ -79,7 +89,7 @@ public class Mover : MonoBehaviour, IGridMover
 
     public void MoveToNextNodePosition()
     {
-        LeanTween.move(gameObject, GridHandler.grid.GetNode(nextNodePosition).worldPosition, timeBetweenNodes);
+        LeanTween.move(gameObject, GridHandler.grid.GetNode(nextNodeLocation).worldPosition, timeBetweenNodes);
 
     }
 

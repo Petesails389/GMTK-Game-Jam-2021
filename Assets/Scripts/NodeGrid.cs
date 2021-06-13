@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class NodeGrid
 {
-
     Vector2Int gridSize;
     List<Node> nodes = new List<Node>();
     Dictionary<Vector2Int, Node> nodeDict = new Dictionary<Vector2Int, Node>();
@@ -28,33 +27,61 @@ public class NodeGrid
         }
     }
 
-    public Node GetNode(int x, int y)
+    public Node GetNode(int _x, int _y)
     {
-        return nodeDict[new Vector2Int(x, y)];
+        if (!nodeDict.ContainsKey(new Vector2Int(_x, _y)))
+        {
+            Debug.LogWarning($"Trying to get a node thats out does not exist ({_x},{_y}). Returning clamped value location node");
+            _x = Mathf.Clamp(_x, 0, gridSize.x-1);
+            _y = Mathf.Clamp(_y, 0, gridSize.y-1);
+        }
+        return nodeDict[new Vector2Int(_x, _y)];
     }
 
     public Node GetNode(Vector2Int _gridPos)
     {
-        return nodeDict[new Vector2Int(_gridPos.x, _gridPos.y)];
+        return GetNode(_gridPos.x, _gridPos.y);
+    }
+
+    public bool doesExist(Vector2Int _gridPos)
+    {
+        return nodeDict.ContainsKey(_gridPos);
+    }
+
+    public Vector3 GetWorldPosition(Vector2Int _gridPos)
+    {
+        return GetNode(_gridPos).worldPosition;
+    }
+
+    public bool areNeighbours(Node _node1, Node _node2)
+    {
+        return _node1.neighbours.Contains(_node2);
     }
 
     public NodeLink GetLink(Node _node1, Node _node2)
     {
-        Vector2 _dir = _node1.gridLocation - _node2.gridLocation;
-        Vector2 _loc = _node1.gridLocation - _dir * 0.5f;
+        Vector2 _dir = _node2.gridLocation - _node1.gridLocation;
+        if (!areNeighbours(_node1, _node2))
+        {
+            _dir = _dir.normalized;
+            Debug.LogWarning($"Trying to get link from nodes that aren't neighbours{_node1.gridLocation},{_node2.gridLocation}. Returning link to node in same direction {_dir}");
 
+        }
+        Vector2 _loc = _node1.gridLocation + _dir * 0.5f;
+        if (!linkDict.ContainsKey(_loc))
+        {
+            Debug.LogError($"Link with this location {_loc}, is not in the dictionary!!");
+        }
         return linkDict[_loc];
     }
 
     public NodeLink GetLink(Vector2Int _node1Loc, Vector2Int _node2Loc)
     {
-
-        Node _node1 = GridHandler.grid.GetNode(_node1Loc);
-        Node _node2 = GridHandler.grid.GetNode(_node2Loc);
-        Vector2 _dir = _node1.gridLocation - _node2.gridLocation;
-        Vector2 _loc = _node1.gridLocation - _dir * 0.5f;
-        return linkDict[_loc];
+        Node _node1 = GetNode(_node1Loc);
+        Node _node2 = GetNode(_node2Loc);
+        return GetLink(_node1, _node2);
     }
+
     public void CalculateNeighbours()
     {
         for (int x = 0; x < gridSize.x; x++)

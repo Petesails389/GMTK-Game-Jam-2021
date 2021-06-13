@@ -1,0 +1,143 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &123003255073082077
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 123003255073082083}
+  - component: {fileID: 7109419927890763847}
+  - component: {fileID: 697158569271334922}
+  m_Layer: 0
+  m_Name: DogObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &123003255073082083
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123003255073082077}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.98, y: 1.84, z: -0.54169273}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 123003255629078503}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7109419927890763847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123003255073082077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96719ca0583fc434782d2237d9370ac9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentPosition: {x: 0, y: 0}
+--- !u!114 &697158569271334922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123003255073082077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af11933c49d5d864ab71190d5bf00b17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EndOfGridEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7109419927890763847}
+        m_TargetAssemblyTypeName: WorldObject, Assembly-CSharp
+        m_MethodName: DestroyWorldObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  direction: {x: 1, y: 0}
+  turnAroundWhenBlocked: 1
+  startNodeLocation: {x: 0, y: 0}
+  timeBetweenNodes: 1
+  canMoveBack: 0
+  stopMovingWhenDone: 0
+--- !u!1001 &1656467219040645417
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 123003255073082083}
+    m_Modifications:
+    - target: {fileID: 1677602852224364232, guid: 9591a863377c4f34bae23d478ebad386, type: 3}
+      propertyPath: m_Name
+      value: dogindicator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677602852224364238, guid: 9591a863377c4f34bae23d478ebad386, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677602852224364238, guid: 9591a863377c4f34bae23d478ebad386, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677602852224364238, guid: 9591a863377c4f34bae23d478ebad386, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677602852224364238, guid: 9591a863377c4f34bae23d478ebad386, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677602852224364238, guid: 9591a863377c4f34bae23d478ebad386, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677602852224364238, guid: 9591a863377c4f34bae23d478ebad386, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677602852224364238, guid: 9591a863377c4f34bae23d478ebad386, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677602852224364238, guid: 9591a863377c4f34bae23d478ebad386, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677602852224364238, guid: 9591a863377c4f34bae23d478ebad386, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677602852224364238, guid: 9591a863377c4f34bae23d478ebad386, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677602852224364238, guid: 9591a863377c4f34bae23d478ebad386, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9591a863377c4f34bae23d478ebad386, type: 3}
+--- !u!4 &123003255629078503 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1677602852224364238, guid: 9591a863377c4f34bae23d478ebad386, type: 3}
+  m_PrefabInstance: {fileID: 1656467219040645417}
+  m_PrefabAsset: {fileID: 0}

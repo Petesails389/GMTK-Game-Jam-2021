@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2994157b7ca0644a9783791600db23d, type: 3}
   m_Name: GameManager
   m_EditorClassIdentifier: 
-  gameScene: TestScene
+  gameScene: GameScene
