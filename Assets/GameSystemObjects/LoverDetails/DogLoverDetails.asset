@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: DogLoverDetails
   m_EditorClassIdentifier: 
   Happyness: 10
-  item: {fileID: 0}
+  item: {fileID: 11400000, guid: b7161445f669e174c8a298a33189ae36, type: 2}
   movementSpeed: 5
   loveInterest: {fileID: 11400000, guid: 4f0cee04437a24041a422e7e83580acd, type: 2}

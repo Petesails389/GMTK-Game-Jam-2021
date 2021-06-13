@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Lover : MonoBehaviour
 {
+    public UnityEvent InLoveEvent;
+    public UnityEvent DeniedEvent;
     public LoverDetails details;
     public Lover other;
     public SharedLoveBar loveBar;
@@ -17,21 +20,14 @@ public class Lover : MonoBehaviour
         {
             if (details.loveInterest.conditionCheck.Check(other.details))
             {
+                InLoveEvent.Invoke();
                 Debug.Log("FallInLove");
             }
+            else
+            {
+                DeniedEvent.Invoke();
+            }
         }
-        // PersonState _otherState = _other.GetComponent<Person>().state;
-        // foreach (PersonFeature _feat in personFeatures)
-        // {
-        //     Debug.Log(_feat.ToString());
-        //     if (_feat is LoveConditionFeature)
-        //     {
-        //         LoveConditionFeature _con = _feat as LoveConditionFeature;
-        //         if (_con.CheckCondition(_otherState))
-        //         {
-        //             Debug.Log("FALL IN LOVE");
-        //         }
-        //     }
-        // }
+
     }
 }
