@@ -8,19 +8,21 @@ public class LoveManager : MonoBehaviour
     public List<LoverDetails> loverDetails = new List<LoverDetails>();
     public Queue<LoverDetails> loverDetailsUnused = new Queue<LoverDetails>();
     public List<LoverDetails> loverDetailsInGame = new List<LoverDetails>();
-
     public List<Lover> loverObjectsInScene = new List<Lover>();
 
     public int maxLovers = 2;
+
     void Awake()
     {
         instance = this;
         loverDetailsUnused = new Queue<LoverDetails>(loverDetails);
     }
+
     void Start()
     {
         StartCoroutine("Spawner");
     }
+
     IEnumerator Spawner()
     {
         while (true)
@@ -35,8 +37,6 @@ public class LoveManager : MonoBehaviour
 
     public void SpawnNewLovers()
     {
-
-        int _randomInt = Random.Range(0, loverDetailsUnused.Count);
         LoverDetails first = loverDetailsUnused.Dequeue();
         LoverDetails second = loverDetailsUnused.Dequeue();
         loverDetailsInGame.Add(first);
@@ -65,6 +65,9 @@ public class LoveManager : MonoBehaviour
         Lover firstObject = Instantiate(first.prefab);
         Lover secondObject = Instantiate(second.prefab);
 
+        SharedLoveBar loveBar = new SharedLoveBar();
+        //Set Lovebar
+
 
         loverObjectsInScene.Add(firstObject);
         loverObjectsInScene.Add(secondObject);
@@ -72,13 +75,11 @@ public class LoveManager : MonoBehaviour
         first.Init(x, y, firstObject);
         second.Init(x2, y2, secondObject);
 
+        
+
         secondObject.other = firstObject;
         firstObject.other = secondObject;
-
-
     }
-
-
 
     public void DestroyLovers(Lover a)
     {

@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc94c309da0f91d41a039df81dbc9e65, type: 3}
-  m_Name: Poem
+  m_Script: {fileID: 11500000, guid: 8f94fe72a01c4f64b9de938369b1a429, type: 3}
+  m_Name: Personality_DogLove
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: d681e83992d73d74195e5dd162cffbde, type: 3}
-  header: Poem
-  content: They at least tried...
+  icon: {fileID: 21300000, guid: 487000b1009f79d4d9732cbe3ea878a9, type: 3}
+  feeling: 0
+  itemToCheck: {fileID: 11400000, guid: b7161445f669e174c8a298a33189ae36, type: 2}

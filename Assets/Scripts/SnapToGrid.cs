@@ -5,7 +5,6 @@ using UnityEngine.Events;
 
 public class SnapToGrid : MonoBehaviour
 {
-
     public UnityEvent<Vector2Int> OnPlaceEvent;
     bool placed = false;
     bool mouseOnMap = false;
@@ -23,7 +22,6 @@ public class SnapToGrid : MonoBehaviour
             }
         }
     }
-
 
     void FollowMouse()
     {
@@ -46,18 +44,6 @@ public class SnapToGrid : MonoBehaviour
             int _clampY = Mathf.Clamp((int)_worldPosition.y, 0, (GridHandler.GridSize.y - 1));
             currentPosition = new Vector2Int(_clampX, _clampY);
             transform.position = GridHandler.grid.GetNode(_clampX, _clampY).worldPosition;
-            // float _x = _worldPosition.x - (_worldPosition.x % (0.5f * GridHandler.GridScale.x));
-            // float _y = _worldPosition.y - (_worldPosition.y % (0.5f * GridHandler.GridScale.y));
-            // Vector2 _gridPosition = new Vector2(_x, _y);
-            // transform.position = new Vector3(_gridPosition.x, 0, _gridPosition.y);
-
         }
-
-        // worldPosition.x -= (worldPosition.x % 0.5f);
-        // worldPosition.z -= (worldPosition.z % 0.5f);
-        // worldPosition.x = Mathf.Clamp(worldPosition.x, 0, (GridHandler.GridSize.x - 1) * GridHandler.GridScale.x);
-        // worldPosition.z = Mathf.Clamp(worldPosition.y, 0, (GridHandler.GridSize.y - 1) * GridHandler.GridScale.y);
-        // print(worldPosition);
-        // // currentPosition = new Vector2Int(Mathf.RoundToInt(worldPosition.x), Mathf.RoundToInt(worldPosition.z));
     }
 }

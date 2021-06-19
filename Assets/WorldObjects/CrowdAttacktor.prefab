@@ -85,6 +85,14 @@ PrefabInstance:
       value: dogindicator
       objectReference: {fileID: 0}
     - target: {fileID: 1677602852224364233, guid: 9591a863377c4f34bae23d478ebad386, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677602852224364233, guid: 9591a863377c4f34bae23d478ebad386, type: 3}
+      propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677602852224364233, guid: 9591a863377c4f34bae23d478ebad386, type: 3}
       propertyPath: m_Size.x
       value: 40.96
       objectReference: {fileID: 0}
@@ -96,6 +104,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: e491c5dd465c76a49a98ae9dea9f8dab, type: 3}
+    - target: {fileID: 1677602852224364233, guid: 9591a863377c4f34bae23d478ebad386, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1677602852224364238, guid: 9591a863377c4f34bae23d478ebad386, type: 3}
       propertyPath: m_RootOrder
       value: 0
