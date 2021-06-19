@@ -5,7 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - Love
-  - NodeEvent
   - Map
   - WorldObject
   - Item
@@ -43,9 +42,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: LineRenderer
-    uniqueID: 2319802223
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
