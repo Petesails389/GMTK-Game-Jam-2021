@@ -10,6 +10,5 @@ public abstract class Personality : ScriptableObject
     }
     public Sprite icon;
     public EFeeling feeling;
-    public abstract bool Check(LoverDetails _details);
     public abstract bool Check(Item item);
 }

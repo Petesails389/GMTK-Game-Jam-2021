@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+
 public class PersonDetailUI : MonoBehaviour
 {
     public static PersonDetailUI instance;
     [SerializeField] GameObject overlay;
-    LoverDetails currentDetailsShowing;
+    Lover currentDetailsShowing;
+    
     [Header("References")]
     [SerializeField] public TextMeshProUGUI nameText;
-    [SerializeField] public TooptipTriggerUI itemToolTip;
+    [SerializeField] public TooltipTriggerUI itemToolTip;
     [SerializeField] List<Image> traitIcons = new List<Image>();
     [SerializeField] List<Image> heartBarIcons = new List<Image>();
     [SerializeField] Image soulMateIcon;
+
     [Header("Sprites")]
 
     [SerializeField] Sprite heartBarFull, heartBarEmpty;
@@ -30,7 +33,7 @@ public class PersonDetailUI : MonoBehaviour
 
     public static void SetTrait(int _index, LoverDetails loverDetails)
     {
-        instance.traitIcons[_index].sprite = loverDetails.personality.icon;
+        instance.traitIcons[_index].sprite = loverDetails.personalities[0].icon;
     }
 
     public static void UpdateHeartBar(int newValue)
@@ -49,23 +52,25 @@ public class PersonDetailUI : MonoBehaviour
             i++;
         }
     }
-    public static void Set(LoverDetails _details)
+
+    public static void Set(Lover _lover)
     {
         instance.overlay.SetActive(false);
-        Debug.Log(_details);
-        instance.nameText.text = _details.loverName;
-        UpdateHeartBar(_details.loveBar.currentValue);
-        instance.traitIcons[0].sprite = _details.personality.icon;
+        
+        instance.nameText.text = _lover.details.loverName;
+        UpdateHeartBar(_lover.loveBar.currentValue);
+        instance.traitIcons[0].sprite = _lover.details.personalities[0].icon;
 
-        if (_details.item != null)
+        if (_lover.item != null)
         {
-            instance.inventoryItem.sprite = _details.item.icon;
-            string a = _details.item.content;
-            string b = _details.item.header;
-            instance.itemToolTip.content = a;
-            instance.itemToolTip.header = b;
+            instance.inventoryItem.sprite = _lover.item.icon;
+            instance.itemToolTip.content = _lover.item.content;
+            instance.itemToolTip.header =  _lover.item.header;
+        } else {
+            instance.inventoryItem.sprite = null;
+            instance.itemToolTip.header = "Inventory";
+            instance.itemToolTip.content = "It's empty";
         }
-
     }
 
     void Update()

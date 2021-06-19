@@ -15,6 +15,7 @@ public class SkillHandler : MonoBehaviour
     [SerializeField] List<SkillAimer> skillAimers = new List<SkillAimer>();
     [SerializeField] List<Button> buttons = new List<Button>();
     [SerializeField] List<Image> cooldownImages = new List<Image>();
+    [SerializeField] List<TooltipTriggerUI> tooltips = new List<TooltipTriggerUI>();
     void Awake()
     {
         instance = this;
@@ -24,7 +25,6 @@ public class SkillHandler : MonoBehaviour
         int i = 0;
         foreach (Skill sk in skillSlots)
         {
-
             InitSkill(i, sk);
             i++;
         }
@@ -41,6 +41,8 @@ public class SkillHandler : MonoBehaviour
         cooldownImages[_index].sprite = _skill.icon;
         skillAimers[_index].icon = _skill.icon;
         skillAimers[_index].skill = _skill;
+        tooltips[_index].content = _skill.tooltip;
+        tooltips[_index].header = _skill.skillName;
     }
 
 

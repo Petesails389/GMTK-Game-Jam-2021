@@ -6,11 +6,6 @@ public class ItemPersonality : Personality
 {
     public Item itemToCheck;
 
-    public override bool Check(LoverDetails _details)
-    {
-        return (_details.item == itemToCheck);
-    }
-
     public override bool Check(Item _item)
     {
         return (itemToCheck == _item);

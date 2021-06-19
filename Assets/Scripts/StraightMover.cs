@@ -14,7 +14,7 @@ public class StraightMover : MonoBehaviour
     [SerializeField] bool canMoveBack;
     public bool stopMovingWhenDone = false;
     Vector2Int lastNodePosition;
-    Vector2Int currentNodePosition;
+    Vector2Int currentNodeLocation;
     Vector2 currentWorldPosition;
     Vector2Int nextNodePosition;
 
@@ -22,8 +22,17 @@ public class StraightMover : MonoBehaviour
     public void StartMoving(Vector2Int _startNodeLocation)
     {
         startNodeLocation = _startNodeLocation;
-        currentNodePosition = _startNodeLocation;
-        transform.position = GridHandler.grid.GetWorldPosition(currentNodePosition);
+        currentNodeLocation = _startNodeLocation;
+        transform.position = GridHandler.grid.GetWorldPosition(currentNodeLocation);
+        if (currentNodeLocation.x < GridHandler.GridSize.x / 2)
+            direction = Vector2Int.right;
+        else if (currentNodeLocation.y < GridHandler.GridSize.y / 2)
+            direction = Vector2Int.up;
+        else if (currentNodeLocation.x > GridHandler.GridSize.x / 2)
+            direction = Vector2Int.left;
+        else 
+            direction = Vector2Int.down;
+
         StartCoroutine("MoveBetweenNodes");
     }
 
@@ -43,9 +52,9 @@ public class StraightMover : MonoBehaviour
     {
         while (!stopMovingWhenDone)
         {
-            Node _node = GridHandler.grid.GetNode(currentNodePosition.x, currentNodePosition.y);
+            Node _node = GridHandler.grid.GetNode(currentNodeLocation.x, currentNodeLocation.y);
 
-            nextNodePosition = currentNodePosition + direction;
+            nextNodePosition = currentNodeLocation + direction;
             // if (GridHandler.grid.GetLink(lastNodePosition, nextNodePosition).IsBlocked)
             // {
             //     if (turnAroundWhenBlocked)
@@ -56,14 +65,15 @@ public class StraightMover : MonoBehaviour
             //     }
             // }
 
-            if (!GridHandler.grid.doesExist(nextNodePosition)){
+            if (!GridHandler.grid.doesExist(nextNodePosition))
+            {
                 EndOfGridEvent.Invoke();
                 stopMovingWhenDone = false;
             }
 
             MoveToNextNodePosition();
-            lastNodePosition = currentNodePosition;
-            currentNodePosition = nextNodePosition;
+            lastNodePosition = currentNodeLocation;
+            currentNodeLocation = nextNodePosition;
             yield return new WaitForSeconds(timeBetweenNodes);
         }
 

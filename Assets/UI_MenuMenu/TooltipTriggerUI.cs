@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class TooptipTriggerUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class TooltipTriggerUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] TooltipSystem tooltipSystem;
     [SerializeField] public string header;

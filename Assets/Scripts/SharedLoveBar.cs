@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu]
+
 public class SharedLoveBar
 {
-    public int currentValue;
+    public int currentValue = 5;
 
     public void SetValue(int newValue)
     {

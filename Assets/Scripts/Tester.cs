@@ -10,7 +10,7 @@ public class Tester : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            LoveManager.instance.loverDetailsInGame[0].loveBar.SetValue(4);
+            LoveManager.instance.loverObjectsInScene[0].loveBar.SetValue(4);
             PersonDetailUI.instance.nameText.text = "fj";
         }
     }

@@ -12,14 +12,14 @@ public class TooltipSystem : ScriptableObject
 
     public void Show(string _header, string _content)
     {
-        Tooltip.instance.gameObject.SetActive(true);
+        Tooltip.instance.Show();
         Tooltip.instance.SetText(_header, _content);
         Tooltip.instance.transform.position = Input.mousePosition;
     }
 
     public void Hide()
     {
-        Tooltip.instance.gameObject.SetActive(false);
+        Tooltip.instance.Hide();
     }
 
 }

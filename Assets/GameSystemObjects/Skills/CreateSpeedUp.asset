@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 40e9773e0762783449305de07c11c13b, type: 3}
   worldObject: {fileID: 7109419927890763847, guid: f1eaa8aced0c13c4f902bb4a4ae55f3b, type: 3}
+  skillName: Speed up
+  tooltip: Speeds a lover up

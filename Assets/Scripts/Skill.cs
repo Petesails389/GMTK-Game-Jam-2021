@@ -6,6 +6,8 @@ public class Skill : ScriptableObject
 {
     [SerializeField] public Sprite icon;
     [SerializeField] WorldObject worldObject;
+    [SerializeField] public string skillName;
+    [SerializeField] public string tooltip;
     public virtual void Trigger(Vector2Int _loc)
     {
         WorldObject _newWorldObject = Instantiate(worldObject, GridHandler.grid.GetNode(_loc).worldPosition, Quaternion.identity);

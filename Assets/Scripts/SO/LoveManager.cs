@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LoveManager : MonoBehaviour
 {
+    public Lover prefab;
     public static LoveManager instance;
     public List<LoverDetails> loverDetails = new List<LoverDetails>();
     public Queue<LoverDetails> loverDetailsUnused = new Queue<LoverDetails>();
@@ -62,20 +63,16 @@ public class LoveManager : MonoBehaviour
         int x2 = GridHandler.GridSize.x - x;
         int y2 = GridHandler.GridSize.y - y;
 
-        Lover firstObject = Instantiate(first.prefab);
-        Lover secondObject = Instantiate(second.prefab);
+        Lover firstObject = Instantiate(prefab);
+        Lover secondObject = Instantiate(prefab);
 
         SharedLoveBar loveBar = new SharedLoveBar();
-        //Set Lovebar
-
 
         loverObjectsInScene.Add(firstObject);
         loverObjectsInScene.Add(secondObject);
 
-        first.Init(x, y, firstObject);
-        second.Init(x2, y2, secondObject);
-
-        
+        firstObject.Init(x, y, first, loveBar);
+        secondObject.Init(x2, y2, second, loveBar);
 
         secondObject.other = firstObject;
         firstObject.other = secondObject;
