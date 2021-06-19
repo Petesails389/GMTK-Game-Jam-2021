@@ -52,11 +52,11 @@ public class Lover : MonoBehaviour
 
     public void CheckWorldObject(GameObject _worldObject)
     {
-        Item worldObjectItem = _worldObject.GetComponent<WorldObject>()?.item;
+        Item _worldObjectItem = _worldObject.GetComponent<WorldObject>()?.item;
         print("checking world object");
-        if (worldObjectItem != null)
+        if (_worldObjectItem != null)
         {
-            if (details.personalities[0].Check(worldObjectItem))
+            if (details.personalities[0].Check(_worldObjectItem))
             {
                 if (details.personalities[0].feeling == Personality.EFeeling.Hate)
                 {
@@ -65,11 +65,21 @@ public class Lover : MonoBehaviour
                 }
                 if (details.personalities[0].feeling == Personality.EFeeling.Love)
                 {
+                    if (!hasItem())
+                    {
+                        item = _worldObjectItem;
+                        Destroy(_worldObject);
+                    }
                     likeFX.Play();
                     loveBar.SetValue(loveBar.currentValue + 1);
                 }
             }
         }
+    }
+
+    public bool hasItem()
+    {
+        return item != null;
     }
 
     public void DestroyLovers()

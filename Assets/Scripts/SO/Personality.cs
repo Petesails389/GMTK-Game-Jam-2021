@@ -8,6 +8,9 @@ public abstract class Personality : ScriptableObject
     {
         Love, Hate
     }
+
+    public string personalityName;
+    public string personalityTooltip;
     public Sprite icon;
     public EFeeling feeling;
     public abstract bool Check(Item item);

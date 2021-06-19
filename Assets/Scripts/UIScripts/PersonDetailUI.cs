@@ -8,12 +8,13 @@ public class PersonDetailUI : MonoBehaviour
 {
     public static PersonDetailUI instance;
     [SerializeField] GameObject overlay;
-    Lover currentDetailsShowing;
-    
+    Lover currentLoverShowing;
+
     [Header("References")]
     [SerializeField] public TextMeshProUGUI nameText;
     [SerializeField] public TooltipTriggerUI itemToolTip;
-    [SerializeField] List<Image> traitIcons = new List<Image>();
+    [SerializeField] List<Image> personalityIcons = new List<Image>();
+    [SerializeField] List<TooltipTriggerUI> personalityTooltip = new List<TooltipTriggerUI>();
     [SerializeField] List<Image> heartBarIcons = new List<Image>();
     [SerializeField] Image soulMateIcon;
 
@@ -25,7 +26,8 @@ public class PersonDetailUI : MonoBehaviour
 
     [SerializeField] Image inventoryItem;
 
-    // Start is called before the first frame update
+    [SerializeField] Item noneItem;
+
     void Awake()
     {
         instance = this;
@@ -33,7 +35,7 @@ public class PersonDetailUI : MonoBehaviour
 
     public static void SetTrait(int _index, LoverDetails loverDetails)
     {
-        instance.traitIcons[_index].sprite = loverDetails.personalities[0].icon;
+        instance.personalityIcons[_index].sprite = loverDetails.personalities[0].icon;
     }
 
     public static void UpdateHeartBar(int newValue)
@@ -55,30 +57,48 @@ public class PersonDetailUI : MonoBehaviour
 
     public static void Set(Lover _lover)
     {
-        instance.overlay.SetActive(false);
-        
-        instance.nameText.text = _lover.details.loverName;
-        UpdateHeartBar(_lover.loveBar.currentValue);
-        instance.traitIcons[0].sprite = _lover.details.personalities[0].icon;
+        instance.currentLoverShowing = _lover;
 
-        if (_lover.item != null)
+        instance.overlay.SetActive(false);
+
+        instance.SetLoverName(_lover.details.loverName);
+        UpdateHeartBar(_lover.loveBar.currentValue);
+        instance.SetPersonalities(_lover.details.personalities);
+
+        if (_lover.hasItem())
         {
-            instance.inventoryItem.sprite = _lover.item.icon;
-            instance.itemToolTip.content = _lover.item.content;
-            instance.itemToolTip.header =  _lover.item.header;
-        } else {
-            instance.inventoryItem.sprite = null;
-            instance.itemToolTip.header = "Inventory";
-            instance.itemToolTip.content = "It's empty";
+            instance.SetItem(_lover.item);
         }
+        else
+        {
+            instance.SetItem(instance.noneItem);
+        }
+    }
+
+    void SetItem(Item _item)
+    {
+        instance.inventoryItem.sprite = _item.icon;
+        instance.itemToolTip.content = _item.content;
+        instance.itemToolTip.header = _item.header;
+    }
+
+    void SetLoverName(string _name)
+    {
+        nameText.text = _name;
+    }
+
+    void SetPersonalities(List<Personality> _personalities)
+    {
+        personalityIcons[0].sprite = _personalities[0].icon;
+        personalityTooltip[0].header = _personalities[0].personalityName;
+        personalityTooltip[0].content = _personalities[0].personalityTooltip;
     }
 
     void Update()
     {
-        if (currentDetailsShowing != null)
+        if (currentLoverShowing != null)
         {
-            UpdateHeartBar(currentDetailsShowing.loveBar.currentValue);
+            UpdateHeartBar(currentLoverShowing.loveBar.currentValue);
         }
-
     }
 }

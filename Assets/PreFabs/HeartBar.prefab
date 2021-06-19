@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 565469185768600363}
   - component: {fileID: 8530745469375676744}
   m_Layer: 5
-  m_Name: HappyPanel (1)
+  m_Name: HeartBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
