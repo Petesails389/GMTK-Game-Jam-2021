@@ -36,6 +36,7 @@ public class ExtendedEditorWindow : EditorWindow
             EditorGUILayout.PropertyField(p, drawChildren);
 
             // }
+            
         }
     }
 
@@ -43,7 +44,7 @@ public class ExtendedEditorWindow : EditorWindow
     {
         foreach (SerializedProperty p in prop)
         {
-            if (GUILayout.Button(p.FindPropertyRelative("loverName").stringValue))
+            if (GUILayout.Button(p.FindPropertyRelative("coupleName").stringValue))
             {
                 selectedPropertyPath = p.propertyPath;
             }

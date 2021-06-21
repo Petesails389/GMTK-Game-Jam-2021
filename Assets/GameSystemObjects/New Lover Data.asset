@@ -12,10 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 020301006f4ad5541af0c40f8175971c, type: 3}
   m_Name: New Lover Data
   m_EditorClassIdentifier: 
-  loverDataObjects:
-  - loverName: uio
-    startHappyness: 0
-    startItem: {fileID: 0}
-    movementSpeed: 0
-    personalities:
-    - {fileID: 11400000, guid: c3e1b35bf68eee346abfe5c0126bff4a, type: 2}
+  couples:
+  - coupleName: DogLovers
+    loverA:
+      loverName: aa
+      startHappyness: 0
+      startItem: {fileID: 0}
+      movementSpeed: 0
+      personalities:
+      - {fileID: 11400000, guid: 7cfe3ee194360624c9d2d85ed4bbb4db, type: 2}
+    loverB:
+      loverName: 
+      startHappyness: 0
+      startItem: {fileID: 0}
+      movementSpeed: 0
+      personalities:
+      - {fileID: 0}

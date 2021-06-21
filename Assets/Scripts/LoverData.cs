@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Lover Data Object")]
 public class LoverData : ScriptableObject
 {
-    public List<LoverDataObject> loverDataObjects = new List<LoverDataObject>();
+    public List<Couple> couples = new List<Couple>();
 }
