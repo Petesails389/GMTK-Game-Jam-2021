@@ -65,7 +65,7 @@ public class StraightMover : MonoBehaviour
             //     }
             // }
 
-            if (!GridHandler.grid.doesExist(nextNodePosition))
+            if (!GridHandler.grid.DoesExist(nextNodePosition))
             {
                 EndOfGridEvent.Invoke();
                 stopMovingWhenDone = false;

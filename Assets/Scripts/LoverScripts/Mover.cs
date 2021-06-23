@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour, IGridMover
 {
-
-    public Vector2Int startNodePosition;
+    public Vector2Int startNodeLocation;
     [SerializeField] float timeBetweenNodes = 0.5f;
     [SerializeField] bool canMoveBack;
     public bool stopMovingWhenDone = false;
     Vector2Int lastNodeLocation;
     Vector2Int currentNodeLocation;
-    Vector2 currentWorldPosition;
     Vector2Int nextNodeLocation;
     Vector2Int[] directions = { Vector2Int.left, Vector2Int.down, Vector2Int.right, Vector2Int.up };
 
-
-
     //Interface impl.
+    public void MoveToNodeLocation(Vector2Int _nodeLocation)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public void StartMoving()
     {
         StartCoroutine("MoveBetweenNodes");
@@ -31,15 +32,21 @@ public class Mover : MonoBehaviour, IGridMover
 
     public void Init()
     {
-        currentNodeLocation = startNodePosition;
-        transform.position = GridHandler.grid.GetNode(currentNodeLocation).worldPosition;
+        currentNodeLocation = startNodeLocation;
+
+        SetPositionToNodeLocation(currentNodeLocation);
         StartMoving();
     }
+
+    public void SetPositionToNodeLocation(Vector2Int _nodeLocation)
+    {
+        transform.position = GridHandler.grid.GetNode(_nodeLocation).worldPosition;
+    }
+
     void OnDestroy()
     {
         StopAllCoroutines();
     }
-
 
     public float GetSpeed()
     {
@@ -50,31 +57,25 @@ public class Mover : MonoBehaviour, IGridMover
     {
         while (!stopMovingWhenDone)
         {
-            bool findNewLocation = false;
             Node _currentNode = GridHandler.grid.GetNode(currentNodeLocation.x, currentNodeLocation.y);
 
-            Vector2Int _nextNodeLocation;
-            do
+            Node _nextNode = _currentNode.GetRandomNeighbour();
+
+            //Check if link to next node is not blocked
+            if (GridHandler.grid.GetLink(_currentNode, _nextNode).IsBlocked)
             {
-                int _randomInt = Random.Range(0, _currentNode.neighbours.Count);
-                _nextNodeLocation = _currentNode.neighbours[_randomInt].gridLocation;
+                Debug.Log("is blocked");
+                // findNewLocation = true;
+            }
 
-                //Check if link to next node is not blocked
-                // if (GridHandler.grid.GetLink(lastNodeLocation, _nextNodeLocation).IsBlocked)
-                // {
+            //Check if can move back and next node is not back
+            if (!canMoveBack && lastNodeLocation == nextNodeLocation)
+            {
+                // findNewLocation = true;
+            }
 
-                //     findNewLocation = true;
-                // }
 
-                //Check if can move back and next node is not back
-                if (!canMoveBack && lastNodeLocation == nextNodeLocation)
-                {
-                    // findNewLocation = true;
-                }
-
-            } while (findNewLocation);
-
-            nextNodeLocation = _nextNodeLocation;
+            nextNodeLocation = _nextNode.gridLocation;
 
 
             MoveToNextNodePosition();

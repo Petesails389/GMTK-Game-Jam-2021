@@ -7,7 +7,6 @@ public class NodeGrid
     Vector2Int gridSize;
     List<Node> nodes = new List<Node>();
     Dictionary<Vector2Int, Node> nodeDict = new Dictionary<Vector2Int, Node>();
-    Dictionary<Vector2, NodeLink> linkDict = new Dictionary<Vector2, NodeLink>();
 
     public NodeGrid(Vector2Int _gridSize)
     {
@@ -32,8 +31,8 @@ public class NodeGrid
         if (!nodeDict.ContainsKey(new Vector2Int(_x, _y)))
         {
             Debug.LogWarning($"Trying to get a node thats out does not exist ({_x},{_y}). Returning clamped value location node");
-            _x = Mathf.Clamp(_x, 0, gridSize.x-1);
-            _y = Mathf.Clamp(_y, 0, gridSize.y-1);
+            _x = Mathf.Clamp(_x, 0, gridSize.x - 1);
+            _y = Mathf.Clamp(_y, 0, gridSize.y - 1);
         }
         return nodeDict[new Vector2Int(_x, _y)];
     }
@@ -43,7 +42,7 @@ public class NodeGrid
         return GetNode(_gridPos.x, _gridPos.y);
     }
 
-    public bool doesExist(Vector2Int _gridPos)
+    public bool DoesExist(Vector2Int _gridPos)
     {
         return nodeDict.ContainsKey(_gridPos);
     }
@@ -53,26 +52,14 @@ public class NodeGrid
         return GetNode(_gridPos).worldPosition;
     }
 
-    public bool areNeighbours(Node _node1, Node _node2)
+    public bool AreNeighbours(Node _node1, Node _node2)
     {
-        return _node1.neighbours.Contains(_node2);
+        return _node1.neighbours.ContainsKey(_node2);
     }
 
     public NodeLink GetLink(Node _node1, Node _node2)
     {
-        Vector2 _dir = _node2.gridLocation - _node1.gridLocation;
-        if (!areNeighbours(_node1, _node2))
-        {
-            _dir = _dir.normalized;
-            Debug.LogWarning($"Trying to get link from nodes that aren't neighbours{_node1.gridLocation},{_node2.gridLocation}. Returning link to node in same direction {_dir}");
-
-        }
-        Vector2 _loc = _node1.gridLocation + _dir * 0.5f;
-        if (!linkDict.ContainsKey(_loc))
-        {
-            Debug.LogError($"Link with this location {_loc}, is not in the dictionary!!");
-        }
-        return linkDict[_loc];
+        return _node1.GetLink(_node2);
     }
 
     public NodeLink GetLink(Vector2Int _node1Loc, Vector2Int _node2Loc)
@@ -89,52 +76,16 @@ public class NodeGrid
             for (int y = 0; y < gridSize.y; y++)
             {
                 Node _node = GetNode(x, y);
-                if (x != 0)
-                {
-                    _node.neighbours.Add(GetNode(x - 1, y));
-
-                    Vector2 _linkLoc = new Vector2(x - 0.5f, y);
-                    if (!linkDict.ContainsKey(_linkLoc))
-                    {
-                        NodeLink _newLink = new NodeLink(_linkLoc, _node, GetNode(x - 1, y));
-                        linkDict.Add(_linkLoc, _newLink);
-                    }
-                }
                 if (x != gridSize.x - 1)
                 {
-                    _node.neighbours.Add(GetNode(x + 1, y));
-                    Vector2 _linkLoc = new Vector2(x + 0.5f, y);
-                    if (!linkDict.ContainsKey(_linkLoc))
-                    {
-                        NodeLink _newLink = new NodeLink(_linkLoc, _node, GetNode(x + 1, y));
-                        linkDict.Add(_linkLoc, _newLink);
-                    }
-                }
-                if (y != 0)
-                {
-                    _node.neighbours.Add(GetNode(x, y - 1));
-                    Vector2 _linkLoc = new Vector2(x, y - 0.5f);
-                    if (!linkDict.ContainsKey(_linkLoc))
-                    {
-                        NodeLink _newLink = new NodeLink(_linkLoc, _node, GetNode(x, y - 1));
-                        linkDict.Add(_linkLoc, _newLink);
-                    }
+                    new NodeLink(_node, GetNode(x + 1, y));
                 }
                 if (y != gridSize.y - 1)
                 {
-                    _node.neighbours.Add(GetNode(x, y + 1));
-
-                    Vector2 _linkLoc = new Vector2(x, y - 0.5f);
-                    if (!linkDict.ContainsKey(_linkLoc))
-                    {
-                        NodeLink _newLink = new NodeLink(_linkLoc, _node, GetNode(x, y + 1));
-                        linkDict.Add(_linkLoc, _newLink);
-                    }
+                    new NodeLink(_node, GetNode(x, y + 1));
                 }
             }
-
         }
-        Debug.Log(GetLink(GetNode(3, 3), GetNode(3, 2)));
     }
 
     public void SetWorldPositions(Vector2 scale)

@@ -869,6 +869,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 535585874, guid: 9b9857cafe4882846a2538d148ef061c, type: 3}
+      propertyPath: skillSlots.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4004f93f864b5ce47a74f76102b7f9d7, type: 2}
     - target: {fileID: 1141363435, guid: 9b9857cafe4882846a2538d148ef061c, type: 3}
       propertyPath: noneItem
       value: 

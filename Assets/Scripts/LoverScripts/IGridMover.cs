@@ -5,7 +5,6 @@ using UnityEngine;
 
 public interface IGridMover
 {
-    public void StartMoving();
+    public void MoveToNodeLocation(Vector2Int _nodeLocation);
 
-    public void StopMoving();
 }

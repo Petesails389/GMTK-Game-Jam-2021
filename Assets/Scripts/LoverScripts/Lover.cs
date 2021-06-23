@@ -21,7 +21,7 @@ public class Lover : MonoBehaviour
         item = _lover.startItem;
         mov = GetComponent<Mover>();
 
-        mov.startNodePosition = new Vector2Int(x, y);
+        mov.startNodeLocation = new Vector2Int(x, y);
         details = _lover;
         loveBar = _loveBar;
         loveBar.SetValue(5);

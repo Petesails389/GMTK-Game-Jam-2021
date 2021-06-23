@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu (menuName = "Skills/skill")]
+[CreateAssetMenu(menuName = "Skills/skill")]
 public class Skill : ScriptableObject
 {
     [SerializeField] public Sprite icon;
-    [SerializeField] WorldObject worldObject;
+    [SerializeField] public WorldObject worldObject;
     [SerializeField] public string skillName;
     [SerializeField] public string tooltip;
     public virtual void Trigger(Vector2Int _loc)
