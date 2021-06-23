@@ -10,7 +10,7 @@ public class Skill : ScriptableObject
     [SerializeField] public string tooltip;
     public virtual void Trigger(Vector2Int _loc)
     {
-        WorldObject _newWorldObject = Instantiate(worldObject, GridHandler.grid.GetNode(_loc).worldPosition, Quaternion.identity);
+        WorldObject _newWorldObject = Instantiate(worldObject, GridHandler.Grid.GetNode(_loc).worldPosition, Quaternion.identity);
         _newWorldObject.GetComponent<BoxCollider2D>().enabled = true;
         _newWorldObject.GetComponent<StraightMover>()?.StartMoving(_loc);
         _newWorldObject.currentPosition = _loc;

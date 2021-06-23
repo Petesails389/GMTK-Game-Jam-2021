@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class NodeGrid
 {
-    Vector2Int gridSize;
+    public readonly Vector2Int gridSize;
+    public readonly Vector2 gridScaleToWorld;
+
     List<Node> nodes = new List<Node>();
     Dictionary<Vector2Int, Node> nodeDict = new Dictionary<Vector2Int, Node>();
 
-    public NodeGrid(Vector2Int _gridSize)
+    //Constructor methods
+    public NodeGrid(Vector2Int _gridSize, Vector2 _gridScaleToWorld)
     {
         gridSize = _gridSize;
+        CreateNodes();
+        gridScaleToWorld = _gridScaleToWorld;
+        SetWorldPositions();
+        CalculateNeighbours();
     }
 
     public void CreateNodes()
@@ -26,6 +33,34 @@ public class NodeGrid
         }
     }
 
+    public void CalculateNeighbours()
+    {
+        for (int x = 0; x < gridSize.x; x++)
+        {
+            for (int y = 0; y < gridSize.y; y++)
+            {
+                Node _node = GetNode(x, y);
+                if (x != gridSize.x - 1)
+                {
+                    new NodeLink(_node, GetNode(x + 1, y));
+                }
+                if (y != gridSize.y - 1)
+                {
+                    new NodeLink(_node, GetNode(x, y + 1));
+                }
+            }
+        }
+    }
+    
+    public void SetWorldPositions()
+    {
+        foreach (Node _node in nodes)
+        {
+            _node.worldPosition = new Vector3(gridScaleToWorld.x * _node.gridLocation.x, gridScaleToWorld.y * _node.gridLocation.y, 0);
+        }
+    }
+
+    //Helper funcs
     public Node GetNode(int _x, int _y)
     {
         if (!nodeDict.ContainsKey(new Vector2Int(_x, _y)))
@@ -69,30 +104,34 @@ public class NodeGrid
         return GetLink(_node1, _node2);
     }
 
-    public void CalculateNeighbours()
+    public Vector2 GetLinkLocation(NodeLink _link)
     {
-        for (int x = 0; x < gridSize.x; x++)
-        {
-            for (int y = 0; y < gridSize.y; y++)
-            {
-                Node _node = GetNode(x, y);
-                if (x != gridSize.x - 1)
-                {
-                    new NodeLink(_node, GetNode(x + 1, y));
-                }
-                if (y != gridSize.y - 1)
-                {
-                    new NodeLink(_node, GetNode(x, y + 1));
-                }
-            }
-        }
+        return (Vector2)(_link.node2.gridLocation + _link.node1.gridLocation) / 2;
     }
 
-    public void SetWorldPositions(Vector2 scale)
+    public Vector2Int GetNeighbourLocationFromPosition(Vector2Int _nodeLocation, Vector2 _position)
     {
-        foreach (Node _node in nodes)
-        {
-            _node.worldPosition = new Vector3(scale.x * _node.gridLocation.x, scale.y * _node.gridLocation.y, 0);
-        }
+        Vector2 _relativePos = new Vector2(_position.x - _nodeLocation.x, _position.y - _nodeLocation.y);
+
+        //Check wether distance x is bigger then y, and set smaller to 0. 
+        if (Mathf.Abs(_relativePos.x) > Mathf.Abs(_relativePos.y))
+            _relativePos.y = 0;
+        else
+            _relativePos.x = 0;
+
+        _relativePos.Normalize();
+
+        return _nodeLocation + new Vector2Int((int)_relativePos.x, (int)_relativePos.y);
+    }
+
+    public Node GetNodeFromPosition(Vector2 _position)
+    {
+        int _x = (int)Mathf.Round(_position.x);
+        int _y = (int)Mathf.Round(_position.y);
+
+        Vector2Int _newPosition = new Vector2Int(_x, _y);
+        _newPosition.Clamp(Vector2Int.zero, gridSize - Vector2Int.one);
+
+        return GetNode(_newPosition);
     }
 }

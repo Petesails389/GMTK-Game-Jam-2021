@@ -128,6 +128,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050febba388f73744acbdbaf53132573, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  snapToLinks: 1
+--- !u!114 &4803794062430444201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7703265230444140762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56067359cb5065745af61c2fee2fdb64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   OnPlaceEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -156,20 +169,8 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   snapToLinks: 1
---- !u!114 &4803794062430444201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7703265230444140762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56067359cb5065745af61c2fee2fdb64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: e491c5dd465c76a49a98ae9dea9f8dab, type: 3}
   skill: {fileID: 11400000, guid: 4004f93f864b5ce47a74f76102b7f9d7, type: 2}

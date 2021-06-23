@@ -23,7 +23,7 @@ public class StraightMover : MonoBehaviour
     {
         startNodeLocation = _startNodeLocation;
         currentNodeLocation = _startNodeLocation;
-        transform.position = GridHandler.grid.GetWorldPosition(currentNodeLocation);
+        transform.position = GridHandler.Grid.GetWorldPosition(currentNodeLocation);
         if (currentNodeLocation.x < GridHandler.GridSize.x / 2)
             direction = Vector2Int.right;
         else if (currentNodeLocation.y < GridHandler.GridSize.y / 2)
@@ -52,7 +52,7 @@ public class StraightMover : MonoBehaviour
     {
         while (!stopMovingWhenDone)
         {
-            Node _node = GridHandler.grid.GetNode(currentNodeLocation.x, currentNodeLocation.y);
+            Node _node = GridHandler.Grid.GetNode(currentNodeLocation.x, currentNodeLocation.y);
 
             nextNodePosition = currentNodeLocation + direction;
             // if (GridHandler.grid.GetLink(lastNodePosition, nextNodePosition).IsBlocked)
@@ -65,7 +65,7 @@ public class StraightMover : MonoBehaviour
             //     }
             // }
 
-            if (!GridHandler.grid.DoesExist(nextNodePosition))
+            if (!GridHandler.Grid.DoesExist(nextNodePosition))
             {
                 EndOfGridEvent.Invoke();
                 stopMovingWhenDone = false;
@@ -86,7 +86,7 @@ public class StraightMover : MonoBehaviour
 
     public void MoveToNextNodePosition()
     {
-        LeanTween.move(gameObject, GridHandler.grid.GetNode(nextNodePosition).worldPosition, timeBetweenNodes);
+        LeanTween.move(gameObject, GridHandler.Grid.GetNode(nextNodePosition).worldPosition, timeBetweenNodes);
 
     }
 }

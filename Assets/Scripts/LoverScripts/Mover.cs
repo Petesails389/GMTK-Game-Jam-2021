@@ -40,7 +40,7 @@ public class Mover : MonoBehaviour, IGridMover
 
     public void SetPositionToNodeLocation(Vector2Int _nodeLocation)
     {
-        transform.position = GridHandler.grid.GetNode(_nodeLocation).worldPosition;
+        transform.position = GridHandler.Grid.GetNode(_nodeLocation).worldPosition;
     }
 
     void OnDestroy()
@@ -57,12 +57,12 @@ public class Mover : MonoBehaviour, IGridMover
     {
         while (!stopMovingWhenDone)
         {
-            Node _currentNode = GridHandler.grid.GetNode(currentNodeLocation.x, currentNodeLocation.y);
+            Node _currentNode = GridHandler.Grid.GetNode(currentNodeLocation.x, currentNodeLocation.y);
 
             Node _nextNode = _currentNode.GetRandomNeighbour();
 
             //Check if link to next node is not blocked
-            if (GridHandler.grid.GetLink(_currentNode, _nextNode).IsBlocked)
+            if (GridHandler.Grid.GetLink(_currentNode, _nextNode).IsBlocked)
             {
                 Debug.Log("is blocked");
                 // findNewLocation = true;
@@ -93,7 +93,7 @@ public class Mover : MonoBehaviour, IGridMover
 
     public void MoveToNextNodePosition()
     {
-        LeanTween.move(gameObject, GridHandler.grid.GetNode(nextNodeLocation).worldPosition, timeBetweenNodes);
+        LeanTween.move(gameObject, GridHandler.Grid.GetNode(nextNodeLocation).worldPosition, timeBetweenNodes);
 
     }
 

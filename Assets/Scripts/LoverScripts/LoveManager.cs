@@ -46,8 +46,8 @@ public class LoveManager : MonoBehaviour
         bool isMid = true;
         do
         {
-            x = Random.Range(0, GridHandler.GridSize.x);
-            y = Random.Range(0, GridHandler.GridSize.y);
+            x = Random.Range(0, GridHandler.GridSize.x-1);
+            y = Random.Range(0, GridHandler.GridSize.y-1);
 
             if (x == 0 || x == GridHandler.GridSize.x)
             {
