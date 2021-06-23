@@ -10,8 +10,12 @@ public class Tester : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            LoveManager.instance.loverObjectsInScene[0].loveBar.SetValue(4);
-            PersonDetailUI.instance.nameText.text = "fj";
+            List<Node> nodes = AStar.GetNewPath(GridHandler.Grid.GetNode(0, 0), GridHandler.Grid.GetNode(3, 3));
+            
+            foreach (Node n in nodes)
+            {
+                Debug.Log(n.gridLocation);
+            }
         }
     }
 }

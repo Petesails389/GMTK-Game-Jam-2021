@@ -5,10 +5,8 @@ using UnityEngine.Events;
 
 public class SnapToGrid : MonoBehaviour
 {
-
     [SerializeField] bool snapToLinks;
     NodeLink currentLink;
-
     Node currentNode;
     public Node CurrentNode { get => currentNode; }
     public NodeLink CurrentLink { get => currentLink; }
@@ -42,6 +40,4 @@ public class SnapToGrid : MonoBehaviour
             }
         }
     }
-
-
 }
